@@ -1,0 +1,59 @@
+@import 'tailwindcss';
+
+:root {
+  --cor-fundo: #f7f3ec;
+  --cor-fundo-card: #ffffff;
+  --cor-texto: #2b2620;
+  --cor-texto-suave: #6b6155;
+  --cor-borda: #e4dccb;
+  --cor-destaque: #7a5230;
+  --cor-destaque-suave: #efe3d0;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --cor-fundo: #17140f;
+    --cor-fundo-card: #221e17;
+    --cor-texto: #f1ece1;
+    --cor-texto-suave: #b9ae9b;
+    --cor-borda: #382f22;
+    --cor-destaque: #e2b57f;
+    --cor-destaque-suave: #332a1b;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --cor-fundo: #17140f;
+  --cor-fundo-card: #221e17;
+  --cor-texto: #f1ece1;
+  --cor-texto-suave: #b9ae9b;
+  --cor-borda: #382f22;
+  --cor-destaque: #e2b57f;
+  --cor-destaque-suave: #332a1b;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family:
+    ui-serif, Georgia, 'Iowan Old Style', 'Palatino Linotype', 'PT Serif', serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+}
