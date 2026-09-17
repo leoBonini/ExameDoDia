@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { itensPlano } from '../content/planoDeVida'
 import { pecadosCapitais } from '../content/pecadosCapitais'
-import type { AngelusAnswer, ExameRespostas, YesNoAnswer } from '../types'
+import type { ExameRespostas, YesNoAnswer } from '../types'
 
 const CHAVE_ATUAL = 'exame-do-dia:atual'
 const CHAVE_HISTORICO = 'exame-do-dia:historico'
@@ -32,7 +32,6 @@ export function criarExameVazio(): ExameRespostas {
     data: hojeISO(),
     ehDomingo: new Date().getDay() === 0,
     plano,
-    angelus: { manha: false, meiodia: false, tarde: false },
     vividoPraticas: null,
     pecados,
     outraCoisa: respostaVazia(),
@@ -79,10 +78,6 @@ export function useExame() {
       ...prev,
       plano: { ...prev.plano, [id]: { ...prev.plano[id], ...resposta } },
     }))
-  }, [])
-
-  const setAngelus = useCallback((angelus: AngelusAnswer) => {
-    setRespostas((prev) => ({ ...prev, angelus }))
   }, [])
 
   const setVividoPraticas = useCallback((valor: string) => {
@@ -142,7 +137,6 @@ export function useExame() {
   return {
     respostas,
     setPlano,
-    setAngelus,
     setVividoPraticas,
     setPecado,
     setOutraCoisa,

@@ -26,18 +26,10 @@ export interface ItemPlano {
   followUpPrompt: string
 }
 
-/** Respostas do Ângelus: rezado em cada momento do dia. */
-export interface AngelusAnswer {
-  manha: boolean
-  meiodia: boolean
-  tarde: boolean
-}
-
 export interface ExameRespostas {
   data: string
   ehDomingo: boolean
   plano: Record<string, YesNoAnswer>
-  angelus: AngelusAnswer
   vividoPraticas: string | null
   pecados: Record<string, YesNoAnswer>
   outraCoisa: YesNoAnswer

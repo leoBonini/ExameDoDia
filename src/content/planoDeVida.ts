@@ -22,6 +22,24 @@ export const itensPlano: ItemPlano[] = [
     followUpPrompt: 'Houve algum impedimento ou o que fez você não ir?',
   },
   {
+    id: 'angelus_manha',
+    titulo: 'Ângelus da manhã',
+    pergunta: 'Você rezou o Ângelus da manhã?',
+    followUpPrompt: 'O que aconteceu?',
+  },
+  {
+    id: 'angelus_meiodia',
+    titulo: 'Ângelus do meio-dia',
+    pergunta: 'Você rezou o Ângelus do meio-dia?',
+    followUpPrompt: 'O que aconteceu?',
+  },
+  {
+    id: 'angelus_tarde',
+    titulo: 'Ângelus da tarde',
+    pergunta: 'Você rezou o Ângelus da tarde?',
+    followUpPrompt: 'O que aconteceu?',
+  },
+  {
     id: 'oracao_tarde',
     titulo: 'Oração da tarde',
     pergunta: 'Você fez sua oração da tarde?',

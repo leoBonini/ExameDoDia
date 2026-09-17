@@ -32,23 +32,9 @@ function contarSimPorPecado(respostas: ExameRespostas): ResumoPecado[] {
 }
 
 function faltasDoPlano(respostas: ExameRespostas): string[] {
-  const faltas = itensPlano
+  return itensPlano
     .filter((item) => respostas.plano[item.id]?.value === 'nao')
     .map((item) => item.titulo)
-
-  const angelusRespondido =
-    respostas.angelus.manha || respostas.angelus.meiodia || respostas.angelus.tarde
-  const angelusCompleto =
-    respostas.angelus.manha && respostas.angelus.meiodia && respostas.angelus.tarde
-  if (!angelusCompleto) {
-    if (!angelusRespondido) {
-      faltas.push('Angelus')
-    } else {
-      faltas.push('Angelus (em parte)')
-    }
-  }
-
-  return faltas
 }
 
 export function gerarResumo(respostas: ExameRespostas): Resumo {
