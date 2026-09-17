@@ -24,13 +24,19 @@ export function TelaEscolhaUnica({
 }: Props) {
   const timeoutRef = useRef<number | null>(null)
 
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current !== null) window.clearTimeout(timeoutRef.current)
+  function cancelarAvancoPendente() {
+    if (timeoutRef.current !== null) {
+      window.clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
     }
-  }, [])
+  }
+
+  // Cancela o avanço automático agendado se a pergunta mudar antes dele
+  // disparar (ex.: usuário voltou pela seta antes do tempo passar).
+  useEffect(() => cancelarAvancoPendente, [pergunta])
 
   function escolher(opcao: string) {
+    cancelarAvancoPendente()
     onEscolher(opcao)
     timeoutRef.current = window.setTimeout(onAvancar, ATRASO_AVANCO_MS)
   }

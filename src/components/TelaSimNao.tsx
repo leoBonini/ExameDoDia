@@ -28,13 +28,19 @@ export function TelaSimNao({
   const timeoutRef = useRef<number | null>(null)
   const mostrarFollowUp = resposta.value === followUpOn
 
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current !== null) window.clearTimeout(timeoutRef.current)
+  function cancelarAvancoPendente() {
+    if (timeoutRef.current !== null) {
+      window.clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
     }
-  }, [])
+  }
+
+  // Cancela o avanço automático agendado se a pergunta mudar antes dele
+  // disparar (ex.: usuário voltou pela seta antes do tempo passar).
+  useEffect(() => cancelarAvancoPendente, [pergunta])
 
   function escolher(valor: YesNo) {
+    cancelarAvancoPendente()
     const mudouValor = valor !== resposta.value
     onChange({ value: valor, nota: mudouValor ? '' : resposta.nota })
     if (valor !== followUpOn) {
