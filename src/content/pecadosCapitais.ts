@@ -87,6 +87,7 @@ export const pecadosCapitais: PecadoCapital[] = [
       { id: 'preguica_3', texto: 'Você transferiu para outra pessoa uma obrigação sua, ou deixou de ajudar alguém, só por não querer se esforçar?' },
       { id: 'preguica_4', texto: 'Você evitou rezar ou abandonou alguma prática espiritual assumida só por comodismo?' },
       { id: 'preguica_5', texto: 'Você percebeu uma oportunidade concreta de fazer o bem e deixou passar só porque daria trabalho?' },
+      { id: 'preguica_6', texto: 'Você perdeu tempo com alguma coisa que sabia que não devia estar fazendo?' },
     ],
   },
 ]

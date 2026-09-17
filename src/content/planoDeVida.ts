@@ -2,6 +2,12 @@ import type { ItemPlano } from '../types'
 
 export const itensPlano: ItemPlano[] = [
   {
+    id: 'minuto_heroico',
+    titulo: 'Minuto heroico',
+    pergunta: 'Você viveu o minuto heroico em todas as atividades que deveria hoje?',
+    followUpPrompt: 'O que aconteceu?',
+  },
+  {
     id: 'oracao_manha',
     titulo: 'Oração da manhã',
     pergunta: 'Você fez sua oração da manhã?',
@@ -22,21 +28,9 @@ export const itensPlano: ItemPlano[] = [
     followUpPrompt: 'Houve algum impedimento ou o que fez você não ir?',
   },
   {
-    id: 'angelus_manha',
-    titulo: 'Ângelus da manhã',
-    pergunta: 'Você rezou o Ângelus da manhã?',
-    followUpPrompt: 'O que aconteceu?',
-  },
-  {
-    id: 'angelus_meiodia',
-    titulo: 'Ângelus do meio-dia',
-    pergunta: 'Você rezou o Ângelus do meio-dia?',
-    followUpPrompt: 'O que aconteceu?',
-  },
-  {
-    id: 'angelus_tarde',
-    titulo: 'Ângelus da tarde',
-    pergunta: 'Você rezou o Ângelus da tarde?',
+    id: 'angelus',
+    titulo: 'Ângelus',
+    pergunta: 'Você rezou o Ângelus hoje?',
     followUpPrompt: 'O que aconteceu?',
   },
   {

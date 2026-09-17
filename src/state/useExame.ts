@@ -35,6 +35,8 @@ export function criarExameVazio(): ExameRespostas {
     vividoPraticas: null,
     pecados,
     outraCoisa: respostaVazia(),
+    pontoPositivo: respostaVazia(),
+    pontoMelhorar: respostaVazia(),
     agradecimento: '',
     concluidoEm: null,
   }
@@ -98,6 +100,20 @@ export function useExame() {
     }))
   }, [])
 
+  const setPontoPositivo = useCallback((resposta: Partial<YesNoAnswer>) => {
+    setRespostas((prev) => ({
+      ...prev,
+      pontoPositivo: { ...prev.pontoPositivo, ...resposta },
+    }))
+  }, [])
+
+  const setPontoMelhorar = useCallback((resposta: Partial<YesNoAnswer>) => {
+    setRespostas((prev) => ({
+      ...prev,
+      pontoMelhorar: { ...prev.pontoMelhorar, ...resposta },
+    }))
+  }, [])
+
   const setAgradecimento = useCallback((texto: string) => {
     setRespostas((prev) => ({ ...prev, agradecimento: texto }))
   }, [])
@@ -140,6 +156,8 @@ export function useExame() {
     setVividoPraticas,
     setPecado,
     setOutraCoisa,
+    setPontoPositivo,
+    setPontoMelhorar,
     setAgradecimento,
     concluir,
     reiniciar,

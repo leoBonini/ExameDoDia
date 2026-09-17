@@ -33,6 +33,8 @@ export interface ExameRespostas {
   vividoPraticas: string | null
   pecados: Record<string, YesNoAnswer>
   outraCoisa: YesNoAnswer
+  pontoPositivo: YesNoAnswer
+  pontoMelhorar: YesNoAnswer
   agradecimento: string
   concluidoEm: string | null
 }

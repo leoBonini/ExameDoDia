@@ -64,6 +64,24 @@ export function StepResumo({ respostas, onVoltar, onConcluir, onReiniciar }: Pro
         </ul>
       </div>
 
+      {respostas.pontoPositivo.value === 'sim' && respostas.pontoPositivo.nota.trim() && (
+        <div className="py-4 border-t border-[var(--cor-borda)]">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-[var(--cor-texto-suave)] mb-2">
+            Ponto que você gostou
+          </h2>
+          <p className="italic leading-relaxed">{respostas.pontoPositivo.nota}</p>
+        </div>
+      )}
+
+      {respostas.pontoMelhorar.value === 'sim' && respostas.pontoMelhorar.nota.trim() && (
+        <div className="py-4 border-t border-[var(--cor-borda)]">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-[var(--cor-texto-suave)] mb-2">
+            Ponto para melhorar
+          </h2>
+          <p className="italic leading-relaxed">{respostas.pontoMelhorar.nota}</p>
+        </div>
+      )}
+
       {respostas.agradecimento.trim() && (
         <div className="py-4 border-t border-[var(--cor-borda)]">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-[var(--cor-texto-suave)] mb-2">

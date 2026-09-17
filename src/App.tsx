@@ -18,6 +18,8 @@ type Tela =
   | { tipo: 'plano_item'; item: ItemPlano }
   | { tipo: 'vivido_praticas' }
   | { tipo: 'seguranca' }
+  | { tipo: 'ponto_positivo' }
+  | { tipo: 'ponto_melhorar' }
   | { tipo: 'agradecimento' }
   | { tipo: 'contricao' }
   | { tipo: 'resumo' }
@@ -40,6 +42,8 @@ function construirTelas(): Tela[] {
 
   telas.push({ tipo: 'vivido_praticas' })
   telas.push({ tipo: 'seguranca' })
+  telas.push({ tipo: 'ponto_positivo' })
+  telas.push({ tipo: 'ponto_melhorar' })
   telas.push({ tipo: 'agradecimento' })
   telas.push({ tipo: 'contricao' })
   telas.push({ tipo: 'resumo' })
@@ -57,6 +61,8 @@ export default function App() {
     setVividoPraticas,
     setPecado,
     setOutraCoisa,
+    setPontoPositivo,
+    setPontoMelhorar,
     setAgradecimento,
     concluir,
     reiniciar,
@@ -133,6 +139,36 @@ export default function App() {
           onChange={setOutraCoisa}
           followUpOn="sim"
           followUpPrompt="O que aconteceu?"
+          onVoltar={voltar}
+          onAvancar={avancar}
+        />
+      )
+      break
+
+    case 'ponto_positivo':
+      conteudo = (
+        <TelaSimNao
+          overline="Revisão final"
+          pergunta="Houve algum ponto do seu dia que você gostou especialmente e gostaria de continuar cultivando?"
+          resposta={respostas.pontoPositivo}
+          onChange={setPontoPositivo}
+          followUpOn="sim"
+          followUpPrompt="O que foi?"
+          onVoltar={voltar}
+          onAvancar={avancar}
+        />
+      )
+      break
+
+    case 'ponto_melhorar':
+      conteudo = (
+        <TelaSimNao
+          overline="Revisão final"
+          pergunta="Houve algo no seu dia que você não gostou e sente que poderia melhorar?"
+          resposta={respostas.pontoMelhorar}
+          onChange={setPontoMelhorar}
+          followUpOn="sim"
+          followUpPrompt="O que foi?"
           onVoltar={voltar}
           onAvancar={avancar}
         />
