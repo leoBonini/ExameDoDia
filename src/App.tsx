@@ -10,7 +10,7 @@ import { StepPresenca } from './steps/StepPresenca'
 import { StepResumo } from './steps/StepResumo'
 import { StepSeguranca } from './steps/StepSeguranca'
 
-const TOTAL_ETAPAS = 1 + 1 + pecadosCapitais.length + 1 + 1 + 1 + 1
+const TOTAL_ETAPAS = 1 + pecadosCapitais.length + 1 + 1 + 1 + 1 + 1
 
 export default function App() {
   const [indice, setIndice] = useState(0)
@@ -29,9 +29,10 @@ export default function App() {
   const avancar = () => setIndice((i) => Math.min(i + 1, TOTAL_ETAPAS - 1))
   const voltar = () => setIndice((i) => Math.max(i - 1, 0))
 
-  const indicePrimeiroPecado = 2
+  const indicePrimeiroPecado = 1
   const indiceUltimoPecado = indicePrimeiroPecado + pecadosCapitais.length - 1
-  const indiceSeguranca = indiceUltimoPecado + 1
+  const indicePlano = indiceUltimoPecado + 1
+  const indiceSeguranca = indicePlano + 1
   const indiceAgradecimento = indiceSeguranca + 1
   const indiceContricao = indiceAgradecimento + 1
   const indiceResumo = indiceContricao + 1
@@ -40,17 +41,6 @@ export default function App() {
 
   if (indice === 0) {
     conteudo = <StepPresenca onComecar={avancar} />
-  } else if (indice === 1) {
-    conteudo = (
-      <StepPlano
-        respostas={respostas}
-        setPlano={setPlano}
-        setAngelus={setAngelus}
-        setVividoPraticas={setVividoPraticas}
-        onVoltar={voltar}
-        onContinuar={avancar}
-      />
-    )
   } else if (indice >= indicePrimeiroPecado && indice <= indiceUltimoPecado) {
     const pecado = pecadosCapitais[indice - indicePrimeiroPecado]
     conteudo = (
@@ -61,6 +51,17 @@ export default function App() {
         onVoltar={voltar}
         onContinuar={avancar}
         primeiraVez={indice === indicePrimeiroPecado}
+      />
+    )
+  } else if (indice === indicePlano) {
+    conteudo = (
+      <StepPlano
+        respostas={respostas}
+        setPlano={setPlano}
+        setAngelus={setAngelus}
+        setVividoPraticas={setVividoPraticas}
+        onVoltar={voltar}
+        onContinuar={avancar}
       />
     )
   } else if (indice === indiceSeguranca) {

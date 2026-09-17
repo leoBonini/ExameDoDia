@@ -23,10 +23,8 @@ export function criarExameVazio(): ExameRespostas {
 
   const pecados: Record<string, YesNoAnswer> = {}
   for (const pecado of pecadosCapitais) {
-    for (const secao of pecado.secoes) {
-      for (const pergunta of secao.perguntas) {
-        pecados[pergunta.id] = respostaVazia()
-      }
+    for (const pergunta of pecado.perguntas) {
+      pecados[pergunta.id] = respostaVazia()
     }
   }
 

@@ -19,15 +19,14 @@ export interface Resumo {
 
 function contarSimPorPecado(respostas: ExameRespostas): ResumoPecado[] {
   return pecadosCapitais.map((pecado) => {
-    const perguntas = pecado.secoes.flatMap((s) => s.perguntas)
-    const simCount = perguntas.filter(
+    const simCount = pecado.perguntas.filter(
       (p) => respostas.pecados[p.id]?.value === 'sim',
     ).length
     return {
       id: pecado.id,
       nome: pecado.nome,
       simCount,
-      totalPerguntas: perguntas.length,
+      totalPerguntas: pecado.perguntas.length,
     }
   })
 }

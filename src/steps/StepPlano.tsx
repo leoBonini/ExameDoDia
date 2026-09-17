@@ -27,7 +27,7 @@ export function StepPlano({
   return (
     <Etapa
       titulo="Plano de Vida Espiritual"
-      subtitulo="Antes de olhar para as faltas, verifique com simplicidade se conseguiu viver as práticas que se propôs. Deixar de cumprir uma prática pessoal não é, em si, pecado."
+      subtitulo="Para fechar, revise com simplicidade se conseguiu viver as práticas que se propôs hoje. Deixar de cumprir uma prática pessoal não é, em si, pecado."
       onVoltar={onVoltar}
       onContinuar={onContinuar}
     >

@@ -32,22 +32,15 @@ export function StepPecado({
           {avisoMarcarSim}
         </p>
       )}
-      {pecado.secoes.map((secao) => (
-        <div key={secao.id} className="py-3">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-[var(--cor-texto-suave)] mt-2 mb-1">
-            {secao.titulo}
-          </h2>
-          {secao.perguntas.map((pergunta) => (
-            <PerguntaSimNao
-              key={pergunta.id}
-              texto={pergunta.texto}
-              resposta={respostas[pergunta.id]}
-              onChange={(r) => setPecado(pergunta.id, r)}
-              followUpOn="sim"
-              followUpPrompt="Quer explicar melhor o que aconteceu?"
-            />
-          ))}
-        </div>
+      {pecado.perguntas.map((pergunta) => (
+        <PerguntaSimNao
+          key={pergunta.id}
+          texto={pergunta.texto}
+          resposta={respostas[pergunta.id]}
+          onChange={(r) => setPecado(pergunta.id, r)}
+          followUpOn="sim"
+          followUpPrompt="Quer contar mais? (onde, quando, com quem)"
+        />
       ))}
     </Etapa>
   )

@@ -10,18 +10,12 @@ export interface Pergunta {
   texto: string
 }
 
-export interface Secao {
-  id: string
-  titulo: string
-  perguntas: Pergunta[]
-}
-
 export interface PecadoCapital {
   id: string
   nome: string
   subtitulo: string
   dica: string
-  secoes: Secao[]
+  perguntas: Pergunta[]
 }
 
 export interface ItemPlano {
