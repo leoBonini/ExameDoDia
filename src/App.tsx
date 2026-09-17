@@ -4,7 +4,6 @@ import { TelaEscolhaUnica } from './components/TelaEscolhaUnica'
 import { TelaSimNao } from './components/TelaSimNao'
 import { itensPlano, opcoesVividoPraticas } from './content/planoDeVida'
 import { pecadosCapitais } from './content/pecadosCapitais'
-import { avisoMarcarSim } from './content/textos'
 import { useExame } from './state/useExame'
 import { StepAgradecimento } from './steps/StepAgradecimento'
 import { StepContricao } from './steps/StepContricao'
@@ -14,7 +13,7 @@ import type { ItemPlano, Pergunta, PecadoCapital } from './types'
 
 type Tela =
   | { tipo: 'presenca' }
-  | { tipo: 'pecado'; pecado: PecadoCapital; pergunta: Pergunta; aviso?: string }
+  | { tipo: 'pecado'; pecado: PecadoCapital; pergunta: Pergunta }
   | { tipo: 'plano_item'; item: ItemPlano }
   | { tipo: 'vivido_praticas' }
   | { tipo: 'seguranca' }
@@ -27,16 +26,11 @@ type Tela =
 function construirTelas(): Tela[] {
   const telas: Tela[] = [{ tipo: 'presenca' }]
 
-  pecadosCapitais.forEach((pecado, pi) => {
-    pecado.perguntas.forEach((pergunta, qi) => {
-      telas.push({
-        tipo: 'pecado',
-        pecado,
-        pergunta,
-        aviso: pi === 0 && qi === 0 ? avisoMarcarSim : undefined,
-      })
-    })
-  })
+  for (const pecado of pecadosCapitais) {
+    for (const pergunta of pecado.perguntas) {
+      telas.push({ tipo: 'pecado', pecado, pergunta })
+    }
+  }
 
   for (const item of itensPlano) telas.push({ tipo: 'plano_item', item })
 
@@ -89,7 +83,6 @@ export default function App() {
           onChange={(r) => setPecado(tela.pergunta.id, r)}
           followUpOn="sim"
           followUpPrompt="Quer contar mais? (onde, quando, com quem)"
-          aviso={tela.aviso}
           onVoltar={voltar}
           onAvancar={avancar}
         />

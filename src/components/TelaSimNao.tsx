@@ -13,7 +13,6 @@ interface Props {
   followUpPrompt: string
   onVoltar: () => void
   onAvancar: () => void
-  aviso?: string
 }
 
 export function TelaSimNao({
@@ -25,7 +24,6 @@ export function TelaSimNao({
   followUpPrompt,
   onVoltar,
   onAvancar,
-  aviso,
 }: Props) {
   const timeoutRef = useRef<number | null>(null)
   const mostrarFollowUp = resposta.value === followUpOn
@@ -51,12 +49,6 @@ export function TelaSimNao({
       onVoltar={onVoltar}
       onContinuar={mostrarFollowUp ? onAvancar : undefined}
     >
-      {aviso && (
-        <p className="text-sm text-[var(--cor-texto-suave)] bg-[var(--cor-destaque-suave)] rounded-xl px-4 py-3 my-3 leading-relaxed">
-          {aviso}
-        </p>
-      )}
-
       <div className="py-5 flex gap-3">
         <button
           type="button"
