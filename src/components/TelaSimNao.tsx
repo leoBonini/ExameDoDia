@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Etapa } from './Etapa'
 import type { YesNo, YesNoAnswer } from '../types'
 
-const ATRASO_AVANCO_MS = 380
+const ATRASO_AVANCO_MS = 150
 
 interface Props {
   overline: string

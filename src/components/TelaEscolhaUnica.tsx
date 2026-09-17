@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Etapa } from './Etapa'
 
-const ATRASO_AVANCO_MS = 320
+const ATRASO_AVANCO_MS = 150
 
 interface Props {
   overline: string
