@@ -46,9 +46,23 @@ function carregarAtual(): ExameRespostas {
   try {
     const bruto = localStorage.getItem(CHAVE_ATUAL)
     if (!bruto) return criarExameVazio()
-    const salvo = JSON.parse(bruto) as ExameRespostas
+    const salvo = JSON.parse(bruto) as Partial<ExameRespostas>
     if (salvo.data !== hojeISO()) return criarExameVazio()
-    return salvo
+
+    // Mescla sobre um exame vazio "fresco": se o conteúdo do exame mudou
+    // desde que o progresso foi salvo (pergunta nova, id renomeado etc.),
+    // as respostas antigas são preservadas e o que faltar entra com
+    // valor vazio, em vez de deixar undefined e quebrar a tela.
+    const vazio = criarExameVazio()
+    return {
+      ...vazio,
+      ...salvo,
+      plano: { ...vazio.plano, ...salvo.plano },
+      pecados: { ...vazio.pecados, ...salvo.pecados },
+      outraCoisa: salvo.outraCoisa ?? vazio.outraCoisa,
+      pontoPositivo: salvo.pontoPositivo ?? vazio.pontoPositivo,
+      pontoMelhorar: salvo.pontoMelhorar ?? vazio.pontoMelhorar,
+    }
   } catch {
     return criarExameVazio()
   }

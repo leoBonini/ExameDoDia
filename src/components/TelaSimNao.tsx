@@ -26,7 +26,12 @@ export function TelaSimNao({
   onAvancar,
 }: Props) {
   const timeoutRef = useRef<number | null>(null)
-  const mostrarFollowUp = resposta.value === followUpOn
+  // Nunca deveria vir undefined, mas se o progresso salvo for de uma
+  // versão anterior do exame (pergunta nova, id renomeado), evita que
+  // a tela quebre em vez de simplesmente tratar como ainda não respondida.
+  const valorAtual = resposta?.value ?? null
+  const notaAtual = resposta?.nota ?? ''
+  const mostrarFollowUp = valorAtual === followUpOn
 
   function cancelarAvancoPendente() {
     if (timeoutRef.current !== null) {
@@ -41,8 +46,8 @@ export function TelaSimNao({
 
   function escolher(valor: YesNo) {
     cancelarAvancoPendente()
-    const mudouValor = valor !== resposta.value
-    onChange({ value: valor, nota: mudouValor ? '' : resposta.nota })
+    const mudouValor = valor !== valorAtual
+    onChange({ value: valor, nota: mudouValor ? '' : notaAtual })
     if (valor !== followUpOn) {
       timeoutRef.current = window.setTimeout(onAvancar, ATRASO_AVANCO_MS)
     }
@@ -59,9 +64,9 @@ export function TelaSimNao({
         <button
           type="button"
           onClick={() => escolher('sim')}
-          aria-pressed={resposta.value === 'sim'}
+          aria-pressed={valorAtual === 'sim'}
           className={`flex-1 py-4 rounded-2xl text-base font-medium border transition-colors cursor-pointer ${
-            resposta.value === 'sim'
+            valorAtual === 'sim'
               ? 'bg-[var(--cor-destaque)] text-[var(--cor-fundo-card)] border-[var(--cor-destaque)]'
               : 'border-[var(--cor-borda)] text-[var(--cor-texto)] hover:border-[var(--cor-destaque)]'
           }`}
@@ -71,9 +76,9 @@ export function TelaSimNao({
         <button
           type="button"
           onClick={() => escolher('nao')}
-          aria-pressed={resposta.value === 'nao'}
+          aria-pressed={valorAtual === 'nao'}
           className={`flex-1 py-4 rounded-2xl text-base font-medium border transition-colors cursor-pointer ${
-            resposta.value === 'nao'
+            valorAtual === 'nao'
               ? 'bg-[var(--cor-texto-suave)] text-[var(--cor-fundo-card)] border-[var(--cor-texto-suave)]'
               : 'border-[var(--cor-borda)] text-[var(--cor-texto)] hover:border-[var(--cor-texto-suave)]'
           }`}
@@ -88,7 +93,7 @@ export function TelaSimNao({
             {followUpPrompt} <span className="italic">(campo opcional)</span>
           </label>
           <textarea
-            value={resposta.nota}
+            value={notaAtual}
             onChange={(e) => onChange({ nota: e.target.value })}
             rows={3}
             autoFocus
